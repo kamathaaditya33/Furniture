@@ -211,52 +211,46 @@ export function HomePage() {
       </section>
 
       {/* Horizontal Scroll Gallery */}
-      <section className="py-24 px-4 overflow-hidden">
-        <div className="max-w-7xl mx-auto mb-12">
+      <section className="relative h-[600px] overflow-hidden bg-gradient-to-br from-white to-gray-50">
+        <div className="absolute top-8 left-8 z-20">
           <AnimatedSection>
-            <h2 className="text-4xl md:text-5xl mb-4">Trending Now</h2>
-            <p className="text-gray-600 text-lg">
-              Scroll to explore our most popular pieces
-            </p>
+            <h2 className="text-4xl md:text-6xl mb-2 font-light">Trending Now</h2>
+            <p className="text-gray-500">Swipe to explore</p>
           </AnimatedSection>
         </div>
 
-        <div className="relative">
-          <motion.div
-            className="flex gap-6 px-4"
-            initial={{ x: 0 }}
-            whileInView={{ x: '-10%' }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            viewport={{ once: false }}
-          >
-            {[...allProducts, ...allProducts].map((product, index) => (
-              <motion.div
-                key={`${product.id}-${index}`}
-                className="flex-shrink-0 w-80"
-                whileHover={{ scale: 1.05, zIndex: 10 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <Link to={`/product/${product.id}`}>
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div className="aspect-square overflow-hidden">
-                      <motion.img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.4 }}
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-lg mb-2 line-clamp-1">{product.name}</h3>
-                      <p className="text-2xl">${product.price}</p>
-                    </div>
+        <motion.div
+          className="flex gap-8 h-full items-center px-8"
+          initial={{ x: 0 }}
+          whileInView={{ x: '-50%' }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+          viewport={{ once: false }}
+        >
+          {[...allProducts, ...allProducts, ...allProducts].map((product, index) => (
+            <motion.div
+              key={`${product.id}-${index}`}
+              className="flex-shrink-0 w-96 h-96"
+              whileHover={{ scale: 1.08, y: -12, zIndex: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
+              <Link to={`/product/${product.id}`}>
+                <div className="w-full h-full rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow bg-white">
+                  <motion.img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-3/4 object-cover"
+                    whileHover={{ scale: 1.15 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  <div className="p-6 h-1/4 flex flex-col justify-between">
+                    <h3 className="text-lg font-medium line-clamp-1">{product.name}</h3>
+                    <p className="text-2xl font-light">${product.price}</p>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
       {/* Features Section with Stagger */}

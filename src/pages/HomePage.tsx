@@ -220,7 +220,7 @@ export function HomePage() {
         </div>
 
         <motion.div
-          className="flex gap-8 h-full items-center px-8"
+          className="flex gap-4 h-full items-center px-4"
           initial={{ x: 0 }}
           whileInView={{ x: '-50%' }}
           transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
